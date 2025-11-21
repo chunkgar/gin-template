@@ -1,0 +1,57 @@
+# 服务相关配置
+server:
+#   host: 0.0.0.0 # 服务监听地址，默认 0.0.0.0
+#   port: 9000 # 服务监听端口，默认 9000
+#   mode: relase # 服务运行模式: release, debug, test，默认 release
+#   middlewares: recovery,logger,cors # 加载的 gin 中间件列表，多个中间件，逗号(,)隔开: recovery,logger,secure,nocache,cors,dump
+#   trusted-proxies: # 信任的代理地址，多个地址，逗号(,)隔开
+
+# MySQL 数据库相关配置
+# mysql:
+#   host: ${MARIADB_HOST} # MySQL 机器 ip 和端口，默认 127.0.0.1:3306
+#   username: user # MySQL 用户名(建议授权最小权限集)
+#   password: user # MySQL 用户密码
+#   database: db # 系统所用的数据库名
+#   max-idle-connections: 100 # MySQL 最大空闲连接数，默认 100
+#   max-open-connections: 100 # MySQL 最大打开的连接数，默认 100
+#   max-connection-life-time: 10s # 空闲连接最大存活时间，默认 10s
+#   log-level: 4 # GORM log level, 1: silent, 2:error, 3:warn, 4:info
+
+# Redis 配置
+# redis:
+#   host: ${REDIS_HOST} # redis 地址，默认 127.0.0.1:6379
+#   port: ${REDIS_PORT} # redis 端口，默认 6379
+#   password: ${REDIS_PASSWORD} # redis 密码
+#   addrs:
+#   master-name: # redis 集群 master 名称
+#   username: # redis 登录用户名
+#   database: # redis 数据库
+#   optimisation-max-idle:  # redis 连接池中的最大空闲连接数
+#   optimisation-max-active: # 最大活跃连接数
+#   timeout: # 连接 redis 时的超时时间
+#   enable-cluster: # 是否开启集群模式
+#   use-ssl: # 是否启用 TLS
+#   ssl-insecure-skip-verify: # 当连接 redis 时允许使用自签名证书
+
+# log:
+#     name: main # Logger的名字
+#     development: true # 是否是开发模式。如果是开发模式，会对DPanicLevel进行堆栈跟踪。
+#     level: debug # 日志级别，优先级从低到高依次为：debug, info, warn, error, dpanic, panic, fatal。
+#     format: console # 支持的日志输出格式，目前支持console和json两种。console其实就是text格式。
+#     enable-color: true # 是否开启颜色输出，true:是，false:否
+#     disable-caller: false # 是否开启 caller，如果开启会在日志中显示调用日志所在的文件、函数和行号
+#     disable-stacktrace: false # 是否再panic及以上级别禁止打印堆栈信息
+#     output-paths: ${NH_LOG_DIR}/main.log,stdout # 支持输出到多个输出，逗号分开。支持输出到标准输出（stdout）和文件。
+#     error-output-paths: ${NH_LOG_DIR}/main.error.log # zap内部(非业务)错误日志输出路径，多个输出，逗号分开
+
+# JWT 配置
+# jwt:
+#   issuer: JWT # issuer 名称
+#   realm: JWT # jwt 标识
+#   key: # 服务端密钥
+#   timeout: 24h # token 过期时间(小时)
+#   max-refresh: 24h # token 更新时间(小时)
+
+# 苹果登录配置
+# apple-auth:
+  # client-id: # 苹果登录客户端 ID

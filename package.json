@@ -1,0 +1,35 @@
+{
+  "name": "gin-template",
+  "private": true,
+  "scripts": {
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "gokit:clean": "rm -rf $(go env GOMODCACHE)/github.com/chunkgar/gokit@*",
+    "gokit:get": "GOPROXY=direct go get github.com/chunkgar/gokit@latest",
+    "migrate:dev": "go run cmd/main/main.go -c config/main-dev.yml migrate",
+    "build:go:linux": "GOOS=linux GOARCH=amd64 go build -o dist/main cmd/main/main.go",
+    "build:go": "go build -o dist/main cmd/main/main.go",
+    "build": "mkdir -p dist && run-p build:go:linux",
+    "dev:go": "sh -c '[ -f config/main-dev.yml ] || cp config/main-template.yml config/main-dev.yml' && nodemon",
+    "dev:web": "cd web && pnpm dev",
+    "dev": "run-p dev:*"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/test/**",
+      "**/docs/**"
+    ],
+    "ext": "go",
+    "exec": "dotenv -- go run cmd/main/main.go -c config/main-dev.yml",
+    "signal": "SIGTERM",
+    "delay": 1000,
+    "env": {
+      "FS_DEV": "1"
+    }
+  },
+  "devDependencies": {
+    "dotenv-cli": "8.0.0",
+    "nodemon": "^3.1.9",
+    "npm-run-all": "^4.1.5"
+  }
+}

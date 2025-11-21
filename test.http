@@ -1,0 +1,34 @@
+@idToken=""
+
+@base=http://localhost:9000
+ 
+### 第一步：登录并获取 Token
+# @name userLogin
+POST {{base}}/api/login/anon
+Content-Type: application/json
+
+{
+    "device_id": "123",
+    "type": "idfa",
+    "platform": "ios"
+}
+
+### 第二步：使用 IDToken 绑定
+POST {{base}}/api/bind/idtoken
+Content-Type: application/json
+Authorization: Bearer {{userLogin.response.body.data.token}}
+
+{
+    "id_token": "eyJraWQiOiJIdlZJNkVzWlhKIiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJodHRwczovL2FwcGxlaWQuYXBwbGUuY29tIiwiYXVkIjoiY29tLmJhb2xpbmd0ZWNoLmFpeGlhb3lhbiIsImV4cCI6MTc2NDIxNDk1NSwiaWF0IjoxNzY0MTI4NTU1LCJzdWIiOiIwMDAyMTQuZTgwZWY2OWU2NTUyNGU5ZTk3NDYzZjkxMDI1ZTE1NjIuMDgzNyIsIm5vbmNlIjoiOTQyODAwN2JmOGI5ZTM1MDg3ODUxNWE4NWQ3ODI4ZGIyZGM3MDNhNTVmZjMwY2IyYzViMTBkNGIxYjUzZjhlNiIsImNfaGFzaCI6ImNORWp4c09rNnZ1VTBaWTRTeTFLTXciLCJlbWFpbCI6InE4N2hmZzdtY3BAcHJpdmF0ZXJlbGF5LmFwcGxlaWQuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzX3ByaXZhdGVfZW1haWwiOnRydWUsImF1dGhfdGltZSI6MTc2NDEyODU1NSwibm9uY2Vfc3VwcG9ydGVkIjp0cnVlfQ.QfsIR8i312Sa_UKiyNv0x35P2Ng-MIUghrxMVzBIQMrY-dcppe-JS6WpsSgFTtrHLkB5m0YRYZGKWQ8YDfr-TdoP-eOyFiPRqWTdR_NGmp__-fOXBzVrMQZX4OCpGdzfW2lyzhZZ6pfgMvl8VcfYthzENCfFVOzWhhnK3h1i42Y6EwxxWHWCcL0SB__u6WuzidZhtO_tK4_4Ln4vx3INuwu9sKrAd4suh9iaUXCOkQqeJMH-E4U_8vWW01BKMB_DUuWEkR1EkEwel8bdfylOF54e0a3pPv9fsSiyYT_bTs7DFYweO4k7WUodu_8r3cDpHZJUldFcNFLzLdt09BKg4A",
+    "type": "apple",
+    "platform": "ios"
+}
+
+### 第三步：解除苹果绑定
+POST {{base}}/api/unbind
+Content-Type: application/json
+Authorization: Bearer {{userLogin.response.body.data.token}}
+
+{
+    "type": "apple"
+}

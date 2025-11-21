@@ -1,0 +1,28 @@
+name: gin_template
+
+version: '3.8'
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: gin_template_redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0    # 使用 MySQL 8.0 镜像
+    container_name: gin_template_mysql # 容器名称
+    restart: always     # 自动重启容器
+    environment:
+      MYSQL_ROOT_PASSWORD: root # 设置 MySQL root 用户密码
+      MYSQL_DATABASE: db # 初始化的数据库名称
+      MYSQL_USER: user # 初始化的用户
+      MYSQL_PASSWORD: user # 初始化用户的密码
+    ports:
+      - "3306:3306"     # 将主机的 3306 端口映射到容器的 3306 端口
+    # volumes:
+    #   - ./mysql_data:/var/lib/mysql  # 数据持久化存储卷
+# 
+# volumes:
+#   mysql_data:
+#     driver: local
