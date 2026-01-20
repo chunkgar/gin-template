@@ -6,4 +6,7 @@ go install github.com/abenz1267/gomvp@latest
 
 # 修改包名
 gomvp -p github.com/chunkgar/gin-template -n <new_package_name>
+
+# 或
+./script/rename_module.sh <new_package_name>
 ```
